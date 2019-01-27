@@ -27,10 +27,14 @@ aws apigateway --region ap-southeast-1 get-authorizer --rest-api-id a7np05fnwf  
 aws apigateway --region ap-southeast-1 test-invoke-authorizer --rest-api-id a7np05fnwf  --authorizer-id bch9pv --headers Authorization='abcer'
 
 #Create put method
-aws apigateway --region ap-southeast-1 put-method --rest-api-id i6huzpxe45 --resource-id 75ujfk --http-method ANY --authorization-type NONE --request-parameters method.request.path.proxy=true
+aws apigateway --region ap-southeast-1 put-method --rest-api-id a7np05fnwf --resource-id n3iec1 --http-method ANY --authorization-type NONE --request-parameters method.request.path.proxy=true
 
 #Put method ingetration
-aws apigateway put-integration --region ap-southeast-1 --rest-api-id i6huzpxe45 --resource-id 75ujfk --http-method ANY --type HTTP_PROXY --integration-http-method ANY --uri "http://petstore-demo-endpoint.execute-api.com/petstore/pets/{proxy}" --request-parameters integration.request.path.proxy=method.request.path.proxy
+aws apigateway put-integration --region ap-southeast-1 --rest-api-id a7np05fnwf --resource-id n3iec1 --http-method ANY --type HTTP_PROXY --integration-http-method ANY --uri "http://petstore-demo-endpoint.execute-api.com/petstore/pets/{proxy}" --request-parameters integration.request.path.proxy=method.request.path.proxy
+
+#NI: Get method integration
+aws apigateway get-integration --region ap-southeast-1 --rest-api-id a7np05fnwf --resource-id n3iec1 --http-method ANY --type HTTP_PROXY --integration-http-method ANY --uri "http://petstore-demo-endpoint.execute-api.com/petstore/pets/{proxy}" --request-parameters integration.request.path.proxy=method.request.path.proxy
+
 
 #Deploy API.
 TBD
